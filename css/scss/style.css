@@ -1,0 +1,361 @@
+.infobar {
+  background-color: #263238;
+}
+
+.infobar .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.infobar .container ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.infobar .container ul li {
+  list-style: none;
+  margin: 0 10px;
+}
+
+.infobar .container ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (max-width: 576px) {
+  .infobar .container .social {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .infobar .container .contact {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 5px auto;
+  }
+}
+
+.infobar .container .contact li a i {
+  margin-right: 5px;
+}
+
+.navbar {
+  -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+}
+
+.navbar .container .zay a {
+  color: #5AAC6E !important;
+  font-weight: 700;
+  font-size: 50px;
+}
+
+.navbar .container .navbar-toggler {
+  border: none;
+  color: #263238;
+}
+
+.navbar .container .navbar-toggler:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.navbar .container .menu ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 50%;
+  margin: auto;
+}
+
+.navbar .container .menu ul li {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.navbar .container .menu ul li a {
+  color: #263238;
+  text-decoration: none;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+  font-size: 20px;
+}
+
+@media (max-width: 992px) {
+  .navbar .container .menu ul li a {
+    text-align: center;
+  }
+}
+
+.navbar .container .menu ul li:hover {
+  background-color: #5AAC6E;
+  -webkit-box-shadow: 0px 0px 10px #5AAC6E;
+          box-shadow: 0px 0px 10px #5AAC6E;
+}
+
+.navbar .container .menu ul li:hover a {
+  color: white;
+}
+
+@media (max-width: 992px) {
+  .navbar .container .menu ul li:hover {
+    background-color: #FFF;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .navbar .container .menu ul li:hover a {
+    color: #263238;
+  }
+}
+
+.navbar .container .menu ul .icon {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .navbar .container .menu ul .icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .navbar .container .menu ul .icon li a i {
+    color: #5AAC6E;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar .container .menu ul .icon ul {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar .container .icon {
+    display: none;
+  }
+}
+
+.icon ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+}
+
+.icon ul li {
+  margin: 0px 10px;
+  list-style: none;
+}
+
+.icon ul li a {
+  color: #263238;
+  text-decoration: none;
+}
+
+.icon ul li a:hover {
+  color: #5AAC6E;
+}
+
+footer {
+  background-color: #212934;
+  color: white;
+  padding-top: 50px;
+}
+
+@media (max-width: 768px) {
+  footer .containerfirstchild {
+    padding: 0px 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  footer .center-text {
+    text-align: center;
+  }
+}
+
+footer .logo {
+  color: #5AAC6E;
+  font-weight: 700;
+  margin-top: 0px;
+}
+
+footer h2 {
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 768px) {
+  footer h2 {
+    margin-top: 35px;
+  }
+}
+
+footer ul {
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li {
+  list-style: none;
+  margin: 10px 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+footer ul li a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+footer ul li i {
+  margin-right: 5px;
+}
+
+footer .social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  footer .social {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
+footer .social li .iconflex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  width: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100%;
+}
+
+footer .social li .iconflex i {
+  font-size: 25px;
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  footer .socialdiv {
+    margin-top: 35px;
+  }
+}
+
+@media (max-width: 576px) {
+  footer .socialdiv {
+    margin-top: 0;
+  }
+}
+
+footer .socialcontainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+footer .socialcontainer .subscribe {
+  background-color: #5AAC6E;
+  color: #ffffff;
+}
+
+@media (max-width: 992px) {
+  footer .socialcontainer .subscribe {
+    margin-top: 30px;
+  }
+}
+
+footer .socialcontainer .inputmail {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+footer .socialcontainer .inputmail::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+footer .socialcontainer .inputmail:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+footer .socialcontainer .inputmail::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+footer .socialcontainer .inputmail::placeholder {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 992px) {
+  footer .socialcontainer .inputmail {
+    margin-top: 30px;
+  }
+}
+
+footer .copyright {
+  background-color: #1c252e;
+  padding: 25px 0;
+  margin-top: 15px;
+}
+
+footer .copyright p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 992px) {
+  footer .copyright p {
+    text-align: center;
+  }
+}
+
+footer .copyright p a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+footer a:hover {
+  color: #5AAC6E !important;
+}
+/*# sourceMappingURL=style.css.map */

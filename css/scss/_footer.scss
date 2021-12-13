@@ -1,0 +1,136 @@
+footer {
+    background-color: $footer;
+    color: white;
+    padding-top: 50px;
+
+    .containerfirstchild {
+        @media (max-width: 768px) {  
+            padding: 0px 25px;
+        }
+    }
+
+    .center-text {
+        @media (max-width: 768px) {
+            text-align: center;
+        }
+    }
+
+    .logo {
+        color: $vert;
+        font-weight: 700;
+        margin-top: 0px;
+    }
+
+    h2 {
+        font-weight: 200;
+        color: rgba(255, 255, 255, 0.85);
+        @media (max-width: 768px) {  
+            margin-top: 35px;
+        }
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        li {
+            list-style: none;
+            margin: 10px 0;
+            color: rgba(255, 255, 255, 0.85);
+
+            a {
+                color: rgba(255, 255, 255, 0.85);
+                text-decoration: none;
+            }
+
+            i {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .social {
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width: 768px) {  
+            justify-content: space-around;
+        }
+
+        li {
+            .iconflex {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+                width: 50px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 100%;
+                i {
+                    font-size: 25px;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .socialdiv {
+        @media (max-width: 992px) {
+            margin-top: 35px;
+        }
+
+        @media (max-width: 576px) {
+            margin-top: 0;
+        }
+    }
+
+    .socialcontainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .subscribe {
+            background-color: $vert;
+            color: #ffffff;
+            @media (max-width: 992px) {
+                margin-top: 30px;
+            }
+        }
+
+        .inputmail {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.85);
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.15);
+            }
+
+            @media (max-width: 992px) {
+                margin-top: 30px;
+            }
+        }
+    }
+
+    .copyright {
+        background-color: #1c252e;
+        padding: 25px 0;
+        margin-top: 15px;
+
+        p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.85);
+
+            @media (max-width: 992px) {
+                text-align: center;
+            }
+
+            a {
+                color: rgba(255, 255, 255, 0.85);
+            }
+        }
+    }
+
+    a:hover {
+        color: $vert !important;
+    }
+}
