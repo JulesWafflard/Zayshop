@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 13 déc. 2021 à 09:17
+-- Généré le :  lun. 13 déc. 2021 à 11:03
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -50,6 +50,22 @@ DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `contact`
+--
+
+DROP TABLE IF EXISTS `contact`;
+CREATE TABLE IF NOT EXISTS `contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `sujet` varchar(150) NOT NULL,
+  `message` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -118,7 +134,17 @@ CREATE TABLE IF NOT EXISTS `panier` (
   PRIMARY KEY (`id`),
   KEY `fk_idProduit_Panier` (`idProduit`),
   KEY `fk_idUser_Panier` (`idUser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `Quantite`, `idUser`, `idProduit`) VALUES
+(1, 2, 1, 3),
+(2, 1, 1, 2),
+(3, 5, 2, 3),
+(4, 2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -153,7 +179,15 @@ CREATE TABLE IF NOT EXISTS `produit` (
   PRIMARY KEY (`id`),
   KEY `fk_idCategorie_Produit` (`idCategorie`),
   KEY `fk_idGenre_Produit` (`idGenre`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `produit`
+--
+
+INSERT INTO `produit` (`id`, `Nom`, `Description`, `Marque`, `Prix`, `Couleur`, `Specification`, `idCategorie`, `idGenre`) VALUES
+(2, 'montre', 'test', NULL, 199.99, 'or', NULL, NULL, 1),
+(3, 'slip', 'test', NULL, 15.99, 'noir', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -188,6 +222,22 @@ CREATE TABLE IF NOT EXISTS `produitimage` (
 ,`idImage` int(11)
 ,`URL` varchar(100)
 ,`Nom` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Doublure de structure pour la vue `produitprixpanier`
+-- (Voir ci-dessous la vue réelle)
+--
+DROP VIEW IF EXISTS `produitprixpanier`;
+CREATE TABLE IF NOT EXISTS `produitprixpanier` (
+`id` int(11)
+,`Quantite` int(11)
+,`idUser` int(11)
+,`idProduit` int(11)
+,`Prix` float
+,`prixArticles` decimal(10,2)
 );
 
 -- --------------------------------------------------------
@@ -250,10 +300,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Complementadresse` varchar(100) DEFAULT NULL,
   `Codepostal` int(11) DEFAULT NULL,
   `Ville` varchar(100) DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
   `idPays` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_idPays_Users` (`idPays`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `Nom`, `Prenom`, `Telephone`, `Email`, `Mdp`, `Adresse`, `Complementadresse`, `Codepostal`, `Ville`, `admin`, `idPays`) VALUES
+(1, 'Herbert', 'Pierre', '4545', 'pierre@aioli-digital.com', 'toto', '2 impasse des nenuphars', 'maison jaune', 85001, 'les achards', 0, NULL),
+(2, 'Braillon', 'Nicolas', '4545', NULL, 'titi', NULL, NULL, 85001, 'lrsy', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -272,6 +331,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `produitimage`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `produitimage`  AS  select `p`.`id` AS `idProduit`,`ip`.`idImage` AS `idImage`,`i`.`URL` AS `URL`,`i`.`Nom` AS `Nom` from ((`imageproduit` `ip` join `produit` `p`) join `image` `i`) where ((`ip`.`idProduit` = `p`.`id`) and (`ip`.`idImage` = `i`.`id`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `produitprixpanier`
+--
+DROP TABLE IF EXISTS `produitprixpanier`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `produitprixpanier`  AS  select `pa`.`id` AS `id`,`pa`.`Quantite` AS `Quantite`,`pa`.`idUser` AS `idUser`,`pa`.`idProduit` AS `idProduit`,`produit`.`Prix` AS `Prix`,cast((`pa`.`Quantite` * `produit`.`Prix`) as decimal(10,2)) AS `prixArticles` from (`panier` `pa` join `produit` on((`pa`.`idProduit` = `produit`.`id`))) ;
 
 -- --------------------------------------------------------
 
