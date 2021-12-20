@@ -1,0 +1,294 @@
+#singleproduct {
+    background-color: #e9eef4;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    @media (max-width: 992px) {
+        .container {
+            width: 100%;
+            padding-right: var(--bs-gutter-x, 0.75rem);
+            padding-left: var(--bs-gutter-x, 0.75rem);
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    .single {
+        display: flex;
+        justify-content: center;
+    }
+
+    .imageproduit {
+        .slide {
+            margin-top: 20px;
+            .fleche {
+                color: $vert;
+            }
+        }
+
+        @media (max-width: 992px) {
+            padding-bottom: 50px;
+        }
+    }
+
+    .informations {
+        background-color: #fff;
+
+        h2 {
+            margin-top: 10px;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .avis {
+            font-family: "Roboto", sans-serif;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+
+            p {
+                font-size: 20px;
+                margin-left: 10px;
+            }
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .description {
+            margin-top: 10px;
+        }
+
+        .formadd {
+            display: flex;
+            align-items: center;
+
+            form {
+                .liste {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .quantitylabel {
+                        margin-right: 10px;
+                    }
+
+                    .inputquantity {
+                        width: 40px;
+                        margin: 5px 10px 0px 10px;
+                        height: 25px;
+                    }
+                }
+
+                .btn-taille {
+                    background-color: $vert;
+                    color: #fff;
+                }
+
+                .btn-plusminus {
+                    background-color: $vert;
+                    color: #fff;
+                }
+
+                .btn-check:active + .btn-taille,
+                .btn-check:checked + .btn-taille,
+                .btn-taille.active,
+                .btn-taille:active,
+                .show > .btn-taille.dropdown-toggle {
+                    background-color: #4e935f;
+                    box-shadow: 0px 0px 5px inset black;
+                    color: #fff;
+                }
+
+                .margin-form {
+                    margin: 20px 0px;
+                }
+
+                .btn-addbuy {
+                    width: 100%;
+                    background-color: $vert;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+#avisproduit {
+    background-color: #e9eef4;
+    padding-bottom: 50px;
+
+    .container {
+        padding: 0;
+        background-color: white;
+
+        .ajouter {
+            padding: 10px;
+
+            .ajoutertitre {
+                font-family: "Roboto", sans-serif;
+                font-size: 30px;
+                margin: 0;
+            }
+
+            .hrvert {
+                height: 5px;
+                color: $vert;
+                opacity: 1;
+                margin-top: 0;
+            }
+
+            form {
+                .commentaire {
+                    max-height: 160px;
+                    min-height: 110px;
+                }
+
+                :focus:not([tabindex^="-"]) {
+                    outline: 2px dotted #fff;
+                    outline-offset: 1px;
+                }
+
+                .form-control:focus {
+                    color: #212529;
+                    background-color: #fff;
+                    border-color: #4e935f !important;
+                    outline: 0;
+                    box-shadow: 0 0 0 0.25rem #4e935f;
+                }
+
+                .avis {
+                    font-family: "Roboto", sans-serif;
+                    list-style: none;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0;
+
+                    li {
+                        text-align: center;
+                    }
+
+                    p {
+                        font-size: 20px;
+                        margin: 0;
+                    }
+
+                    .stars {
+                        margin-bottom: 10px;
+                    }
+
+                    .btn-addbuy {
+                        width: 100%;
+                        background-color: $vert;
+                        color: #fff;
+                    }
+
+
+                    #full-stars-example-two {
+                        /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+                        .rating-group {
+                            display: inline-flex;
+                        }
+
+                        /* make hover effect work properly in IE */
+                        .rating__icon {
+                            pointer-events: none;
+                        }
+
+                        /* hide radio inputs */
+                        .rating__input {
+                            position: absolute !important;
+                            left: -9999px !important;
+                        }
+
+                        /* hide 'none' input from screenreaders */
+                        .rating__input--none {
+                            display: none;
+                        }
+
+                        /* set icon padding and size */
+                        .rating__label {
+                            cursor: pointer;
+                            padding: 0 0.1em;
+                            font-size: 1.7rem;
+                        }
+
+                        /* set default star color */
+                        .rating__icon--star {
+                            color: #ffdc0f;
+                        }
+
+                        /* if any input is checked, make its following siblings grey */
+                        .rating__input:checked ~ .rating__label .rating__icon--star {
+                            color: #ddd;
+                        }
+
+                        /* make all stars orange on rating group hover */
+                        .rating-group:hover .rating__label .rating__icon--star {
+                            color: #ffdc0f;
+                        }
+
+                        /* make hovered input's following siblings grey on hover */
+                        .rating__input:hover ~ .rating__label .rating__icon--star {
+                            color: #ddd;
+                        }
+                    }
+                }
+            }
+        }
+
+        .voircommentaire {
+            .accordion-item {
+                border-radius: 0;
+
+                .accordion-button {
+                    font-family: "Roboto", sans-serif;
+                    color: $vert;
+                }
+
+                .accordion-button:focus {
+                    border-color: $vert;
+                    box-shadow: 0 0 0 0.25rem $vert;
+                }
+
+                .accordion-button:not(.collapsed) {
+                    background-color: white;
+                }
+
+                .accordion-button:not(.collapsed)::after {
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%235AAC6E'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+                }
+            }
+        }
+    }
+}
+
+#slideproduct {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+
+    p {
+        margin: 0;
+    }
+
+    .uk-card-media-top img {
+        height: 220px !important;
+        width: 100% !important;
+    }
+
+    .avis {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        text-align: center;
+
+        p {
+            font-size: 20px;
+            margin-left: 10px;
+        }
+    }
+}

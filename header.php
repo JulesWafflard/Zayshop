@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <!-- Required meta tags -->
@@ -9,19 +9,18 @@
     <!-- Bootstrap CSS -->
     <link href="css/scss/style.css" rel="stylesheet">
 
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <!-- JQuery -->
-    <script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <title>ZayShop</title>
 </head>
+
+<?php include('bdd.php') ?>
 
 <header>
 
@@ -96,21 +95,20 @@
     </nav>
 
     <script>
-        (function($){
+        (function($) {
             $('.navbar-light .navbar-toggler-icon').css('background-image', 'url(img/hamburger-solid.svg)');
             let burger_manger = false;
-            $('.navbar-toggler').click(function(){
-                if(burger_manger){
+            $('.navbar-toggler').click(function() {
+                if (burger_manger) {
                     $('.navbar-light .navbar-toggler-icon').css('background-image', 'url(img/hamburger-solid.svg)');
                     burger_manger = false;
-                }else{
+                } else {
                     $('.navbar-light .navbar-toggler-icon').css('background-image', 'url(img/hamburger-open.svg)');
                     burger_manger = true;
                 }
-                
-            }) 
+
+            })
         })(jQuery)
-           
     </script>
 </header>
 

@@ -1,4 +1,20 @@
 @import "./variables";
 @import "./header";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200&display=swap');
+@import "./index";
+@import "./singleshop";
+@import "./contact";
 @import "./footer";
 
+.stars {
+    font-size: 20px;
+    .fa-star {
+        color: $textecolor;
+        cursor: pointer;
+        padding: 0.0625rem;
+    }
+    /* Si elle porte en plus la classe '.gold', elle sera en jaune. */
+    .fa-star.gold {
+        color: #ffdc0f;
+    }
+}

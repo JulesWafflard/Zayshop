@@ -1,0 +1,58 @@
+#map {
+    text-align: center;
+    background-color: #e9eef4;
+
+    h1 {
+        padding-top: 50px;
+        font-size: 60px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 100;
+    }
+
+    p {
+        padding-bottom: 30px;
+        font-size: 20px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 100;
+    }
+}
+
+#formcontact {
+    .container {
+        padding: 50px 0px;
+
+        input {
+            margin-bottom: 20px;
+            margin-top: 5px;
+            line-height: 30px;
+        }
+
+        textarea {
+            margin-top: 5px;
+            min-height: 200px;
+            max-height: 300px;
+        }
+
+        .btn-addbuy {
+            background-color: $vert;
+            color: #fff;
+            margin-top: 30px;
+            margin-right: 0;
+            display: block;
+            margin-left:auto;
+        }
+
+        :focus:not([tabindex^="-"]) {
+            outline: 2px dotted #fff;
+            outline-offset: 1px;
+        }
+
+        .form-control:focus {
+            color: #212529;
+            background-color: #fff;
+            border-color: #4e935f !important;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem #4e935f;
+        }
+    }
+}
