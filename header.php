@@ -20,7 +20,15 @@
     <title>ZayShop</title>
 </head>
 
-<?php include('bdd.php') ?>
+<?php
+include('bdd.php');
+include('functions.php');
+
+
+session_start();
+$_SESSION['username'] = 'pierre@aioli-digital.com';
+$leUser = getUnUser()[0];
+?>
 
 <header>
 
@@ -84,7 +92,17 @@
                         <a href=""><i class="fas fa-search"></i></a>
                     </li>
                     <li>
-                        <a href=""><i class="fas fa-cart-plus"></i></a>
+                        <a href="panier.php" class="position-relative">
+                            <i class="fas fa-cart-plus"></i>
+                            <?php $idUser = 1;
+                            $product = getUserPanierNumber($idUser);
+                            if ($product > 0) { ?>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                    <?php echo $product; ?>
+                                    <span class="visually-hidden">Products in cart</span>
+                                </span>
+                            <?php } ?>
+                        </a>
                     </li>
                     <li>
                         <a href=""><i class="fas fa-user"></i></a>

@@ -1,8 +1,7 @@
 <?php
 include 'header.php';
-include 'functions.php';
 ?>
-<main id="index">
+<main id="contact">
 
     <section id="map">
 

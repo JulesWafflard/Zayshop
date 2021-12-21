@@ -1,0 +1,99 @@
+#monpanier {
+    .container {
+        text-align: center;
+
+        h1 {
+            text-align: center;
+            padding-top: 50px;
+            font-size: 60px;
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+        }
+
+        .panier {
+            border-color: $vert;
+            border-width: 2px;
+            opacity: 1;
+            margin: 0;
+            width: 10%;
+            margin: auto;
+        }
+
+        .produits {
+            margin: auto;
+            margin-top: 30px;
+            margin-bottom: 30px;
+
+            .image-produit {
+                max-width: 100% !important;
+            }
+
+            .liste {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .card-title {
+                    text-align: left;
+                    font-size: 25px;
+                    font-family: "Roboto", sans-serif;
+                    font-weight: 400;
+                }
+
+                .card-text {
+                    font-size: 20px;
+                    font-family: "Roboto", sans-serif;
+                    font-weight: 400;
+                }
+
+                .quantitylabel {
+                    margin-right: 10px;
+                }
+
+                .inputquantity {
+                    width: 50px;
+                    margin: 5px 10px 0px 10px;
+                    height: 25px;
+                }
+            }
+
+            .btn-plusminus {
+                background-color: $vert;
+                color: #fff;
+            }
+        }
+
+        .total {
+            margin: auto;
+            margin-bottom: 50px;
+            .totalhr {
+                border-color: black;
+                border-width: 5px;
+                opacity: 1;
+                margin: 0;
+                width: 100%;
+                margin: auto;
+            }
+
+            .totaltext {
+                text-align: left;
+                font-size: 25px;
+                font-family: "Roboto", sans-serif;
+                font-weight: 400;
+            }
+
+            .prixtext {
+                text-align: right;
+                font-size: 20px;
+                font-family: "Roboto", sans-serif;
+                font-weight: 400;
+            }
+
+            .btn-addbuy {
+                width: 30%;
+                background-color: $vert;
+                color: #fff;
+            }
+        }
+    }
+}

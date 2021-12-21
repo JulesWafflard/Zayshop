@@ -1,10 +1,7 @@
 <?php
 include 'header.php';
-include 'functions.php';
 
-/*$NAME = $_GET['5'];
-// Bad:
-echo $NAME;*/
+/*$NAME = $_GET['5'];*/
 
 $idProduit = 7;
 ?>
@@ -94,6 +91,7 @@ $idProduit = 7;
                                             Le produit a été ajouté à votre panier
                                         </div>
                                     <?php
+                                        echo ("<meta http-equiv='refresh' content='1'>");
                                     } else {
                                     ?>
                                         <div class="alert alert-danger" role="alert">
@@ -129,7 +127,7 @@ $idProduit = 7;
                                                     <i class="fas fa-minus"></i>
                                                 </button>
                                             </span>
-                                            <input type="text" id="quantity" name="input-quantite" class="btn btn-secondary inputquantity" value="0" min="0" max="100">
+                                            <input type="text" id="quantity" name="input-quantite" class="btn btn-secondary inputquantity" value="1" min="1" max="99" required>
                                             <span class="input-group-btn">
                                                 <button type="button" class="plus btn btn-taille" data-type="plus" data-field="">
                                                     <i class="fas fa-plus"></i>
@@ -182,7 +180,7 @@ $idProduit = 7;
                                 Le commentaire a été ajouté au produit
                             </div>
                         <?php
-                        echo("<meta http-equiv='refresh' content='1'>");
+                            echo ("<meta http-equiv='refresh' content='1'>");
                         } else {
                         ?>
                             <div class="alert alert-danger" role="alert">

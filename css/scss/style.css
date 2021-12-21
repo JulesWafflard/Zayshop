@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 .infobar {
   background-color: #263238;
 }
@@ -419,7 +419,7 @@
 }
 
 #singleproduct .informations .formadd form .liste .inputquantity {
-  width: 40px;
+  width: 50px;
   margin: 5px 10px 0px 10px;
   height: 25px;
 }
@@ -693,6 +693,176 @@
 }
 
 #formcontact .container .form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #4e935f !important;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0.25rem #4e935f;
+          box-shadow: 0 0 0 0.25rem #4e935f;
+}
+
+#monpanier .container {
+  text-align: center;
+}
+
+#monpanier .container h1 {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 60px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+
+#monpanier .container .panier {
+  border-color: #5AAC6E;
+  border-width: 2px;
+  opacity: 1;
+  margin: 0;
+  width: 10%;
+  margin: auto;
+}
+
+#monpanier .container .produits {
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#monpanier .container .produits .image-produit {
+  max-width: 100% !important;
+}
+
+#monpanier .container .produits .liste {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#monpanier .container .produits .liste .card-title {
+  text-align: left;
+  font-size: 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+#monpanier .container .produits .liste .card-text {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+#monpanier .container .produits .liste .quantitylabel {
+  margin-right: 10px;
+}
+
+#monpanier .container .produits .liste .inputquantity {
+  width: 50px;
+  margin: 5px 10px 0px 10px;
+  height: 25px;
+}
+
+#monpanier .container .produits .btn-plusminus {
+  background-color: #5AAC6E;
+  color: #fff;
+}
+
+#monpanier .container .total {
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+#monpanier .container .total .totalhr {
+  border-color: black;
+  border-width: 5px;
+  opacity: 1;
+  margin: 0;
+  width: 100%;
+  margin: auto;
+}
+
+#monpanier .container .total .totaltext {
+  text-align: left;
+  font-size: 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+#monpanier .container .total .prixtext {
+  text-align: right;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+#monpanier .container .total .btn-addbuy {
+  width: 30%;
+  background-color: #5AAC6E;
+  color: #fff;
+}
+
+#form-informations #forminfos .container {
+  padding: 50px 0px;
+}
+
+#form-informations #forminfos .container h1 {
+  font-size: 60px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+
+#form-informations #forminfos .container .hr-infos {
+  border-color: #5AAC6E;
+  border-width: 2px;
+  opacity: 1;
+  margin-bottom: 30px;
+  width: 30%;
+}
+
+#form-informations #forminfos .container input, #form-informations #forminfos .container select {
+  margin-bottom: 20px;
+  margin-top: 5px;
+  line-height: 30px;
+}
+
+#form-informations #forminfos .container textarea {
+  margin-top: 5px;
+  min-height: 200px;
+  max-height: 300px;
+}
+
+#form-informations #forminfos .container .btn-addbuyD {
+  background-color: #5AAC6E;
+  color: #fff;
+  margin-top: 30px;
+  margin-right: 0;
+  display: block;
+  margin-left: auto;
+  width: 100px;
+  text-decoration: none;
+}
+
+#form-informations #forminfos .container .btn-addbuyG {
+  background-color: #5AAC6E;
+  color: #fff;
+  margin-top: 30px;
+  margin-left: 0;
+  display: block;
+  margin-right: auto;
+}
+
+#form-informations #forminfos .container :focus:not([tabindex^="-"]) {
+  outline: 2px dotted #fff;
+  outline-offset: 1px;
+}
+
+#form-informations #forminfos .container .form-control:focus {
   color: #212529;
   background-color: #fff;
   border-color: #4e935f !important;

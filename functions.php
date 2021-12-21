@@ -207,19 +207,22 @@ function createCart($panier)
 
     /*Verifier si produit existe déjà*/
     global $dbh;
-    $requete = "INSERT INTO panier (Taille, Quantite, idUser, idProduit)
-    VALUES ('".$panier['taille'][0]."', ".$panier['quantite'].", ".$panier['idUser'].", ".$panier['idProduit'].")";
-    $getCat = $dbh->prepare($requete);
-    $getCat->execute();
 
-    if ($getCat) {
+    $delete = "DELETE FROM panier WHERE idUser = " . $panier['idUser'] . " AND idProduit = " . $panier['idProduit'] . " AND Taille = '" . $panier['taille'][0] . "'";
+    $getDel = $dbh->prepare($delete);
+    $getDel->execute();
+    $requete = "INSERT INTO panier (Taille, Quantite, idUser, idProduit)
+    VALUES ('" . $panier['taille'][0] . "', " . $panier['quantite'] . ", " . $panier['idUser'] . ", " . $panier['idProduit'] . ")";
+    $getCart = $dbh->prepare($requete);
+    $getCart->execute();
+
+    if ($getCart) {
         return true;
     } else {
         return false;
     }
 
     return false;
-
 }
 
 function insertUserAvis($avis)
@@ -228,7 +231,7 @@ function insertUserAvis($avis)
     /*Verifier si produit existe déjà*/
     global $dbh;
     $requete = "INSERT INTO avis (Note, Commentaire, idUser, idProduit)
-    VALUES (".$avis['note'].", '".$avis['commentaire']."', ".$avis['idUser'].", ".$avis['idProduit'].")";
+    VALUES (" . $avis['note'] . ", '" . $avis['commentaire'] . "', " . $avis['idUser'] . ", " . $avis['idProduit'] . ")";
     $getCat = $dbh->prepare($requete);
     $getCat->execute();
 
@@ -239,14 +242,13 @@ function insertUserAvis($avis)
     }
 
     return false;
-
 }
 
 function insertMessage($message)
 {
     global $dbh;
     $requete = "INSERT INTO contact (nom, email, sujet, message)
-    VALUES ('".$message['name']."', '".$message['email']."', '".$message['subject']."', '".$message['contactmessage']."')";
+    VALUES ('" . $message['name'] . "', '" . $message['email'] . "', '" . $message['subject'] . "', '" . $message['contactmessage'] . "')";
     $getCat = $dbh->prepare($requete);
     $getCat->execute();
 
@@ -257,6 +259,120 @@ function insertMessage($message)
     }
 
     return false;
-
 }
 
+function getAllProductsCart($id)
+{
+    global $dbh;
+    $requete = "SELECT * FROM produitprixpanier WHERE idUser = $id";
+    $getProducts = $dbh->prepare($requete);
+    $getProducts->execute();
+    $products = $getProducts->fetchAll();
+    foreach ($products as $product) {
+        $productsList[] = array(
+            'idUser' => $id,
+            'idPanier' => $product['id'],
+            'idProduit' => $product['idProduit'],
+            'quantite' => $product['Quantite'],
+            'taille' => $product['Taille'],
+            'prix' => $product['Prix'],
+            'prixArticles' => $product['prixArticles'],
+            'produit' => getProduct($product['idProduit'])
+        );
+    }
+    return $productsList;
+}
+
+function insertPanierQuantity($quantity)
+{
+    global $dbh;
+    $quantityPanier = "";
+    $deletePanierQty = "";
+    foreach ($quantity['quantite'] as $qty) {
+        $quantityPanier .= "UPDATE panier
+                            SET  Quantite = " . $qty . "
+                            WHERE idUser = " . $quantity['idUser'] . " AND idProduit = " . $quantity['idProduit'] . " AND Taille = '" . $quantity['taille'] . "';";
+        if ($qty == 0) {
+            $deletePanierQty .= "DELETE FROM panier 
+                            WHERE idUser = " . $quantity['idUser'] . " AND idProduit = " . $quantity['idProduit'] . " AND Taille = '" . $quantity['taille'] . "';";
+        }
+    }
+    $getDel = $dbh->prepare($deletePanierQty);
+    $getDel->execute();
+    $getCat = $dbh->prepare($quantityPanier);
+    $getCat->execute();
+
+    if ($getCat) {
+        return true;
+    } else {
+        return false;
+    }
+
+    return false;
+}
+
+function getUserPanierNumber($idUser)
+{
+    global $dbh;
+    $requete = "SELECT COUNT(*) as numberproduct FROM panier WHERE idUser = $idUser";
+    $getProducts = $dbh->prepare($requete);
+    $getProducts->execute();
+    $productsNumber = $getProducts->fetchColumn();
+    return $productsNumber;
+}
+
+function getUnUser()
+{
+    global $dbh;
+    $leUser = [];
+    if (isset($_SESSION['username'])) {
+        $requete = 'SELECT * FROM users WHERE Email = "' . $_SESSION['username'] . '"';
+        $getLeUser = $dbh->prepare($requete);
+        $getLeUser->execute();
+        $row_user = $getLeUser->fetchAll();
+        foreach ($row_user as $unuser) {
+            $leUser[] = array(
+                "id" => $unuser['id'],
+                "nom" => $unuser['Nom'],
+                "prenom" => $unuser['Prenom'],
+                "email" => $unuser['Email'],
+                "password" => $unuser['Mdp'],
+                "tel" => $unuser['Telephone'],
+                "adresse" => $unuser['Adresse'],
+                "comp-add" => $unuser['Complementadresse'],
+                "cp" => $unuser['Codepostal'],
+                "ville" => $unuser['Ville'],
+                "pays" => getUserPays($unuser['idPays'])
+            );
+        }
+    }
+    return $leUser;
+}
+
+function getUserPays($id)
+{
+    global $dbh;
+    $requete = "SELECT Nom FROM pays WHERE id = $id";
+    $getPays = $dbh->prepare($requete);
+    $getPays->execute();
+    $pays = $getPays->fetch();
+    return $pays['Nom'];
+}
+
+function updateUser($user)
+{
+    global $dbh;
+    $requete = "UPDATE users
+                SET  Nom= '".$user['nom']."', Prenom= '".$user['prenom']."', Telephone= '".$user['telephone']."', Email= '".$user['email']."', Adresse= '".$user['adresse']."', Complementadresse= '".$user['complementadresse']."', Codepostal=".$user['cp'].", Ville= '".$user['ville']."', idPays=".$user['pays']."
+                WHERE id = ". $user['idUser'] . ""; 
+    $getCat = $dbh->prepare($requete);
+    $getCat->execute();
+
+    if ($getCat) {
+        return true;
+    } else {
+        return false;
+    }
+
+    return false;
+}
