@@ -9,21 +9,27 @@
     <!-- Bootstrap CSS -->
     <link href="css/scss/style.css" rel="stylesheet">
 
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script src='./js/double_curseur.js'></script>
     <title>ZayShop</title>
 </head>
-
-<?php include('bdd.php') ?>
-
-<header>
-
+<?php include('function.php') ?>
+<?php session_start();?>
+<header> 
     <div class="infobar">
         <div class="container">
             <ul class="contact">
@@ -52,10 +58,10 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="./about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="./shop.php">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
@@ -71,7 +77,12 @@
                                     <a href=""><i class="fas fa-cart-plus"></i></a>
                                 </li>
                                 <li>
-                                    <a href=""><i class="fas fa-user"></i></a>
+                                    <?php if (isset($_SESSION['username'])){ ?>
+                                    <a href="./paiement.php"><i class="fas fa-user"></i></a>
+                                    <?php }
+                                    else {?>
+                                    <a href="./connexion.php"><i class="fas fa-user"></i></a>
+                                    <?php }?>
                                 </li>
                             </ul>
                         </div>
@@ -87,7 +98,12 @@
                         <a href=""><i class="fas fa-cart-plus"></i></a>
                     </li>
                     <li>
-                        <a href=""><i class="fas fa-user"></i></a>
+                    <?php if (isset($_SESSION['username'])){ ?>
+                                    <a href="./paiement.php"><i class="fas fa-user"></i></a>
+                                    <?php }
+                                    else {?>
+                                    <a href="./connexion.php"><i class="fas fa-user"></i></a>
+                                    <?php }?>
                     </li>
                 </ul>
             </div>
@@ -95,20 +111,21 @@
     </nav>
 
     <script>
-        (function($) {
+        (function($){
             $('.navbar-light .navbar-toggler-icon').css('background-image', 'url(img/hamburger-solid.svg)');
             let burger_manger = false;
-            $('.navbar-toggler').click(function() {
-                if (burger_manger) {
+            $('.navbar-toggler').click(function(){
+                if(burger_manger){
                     $('.navbar-light .navbar-toggler-icon').css('background-image', 'url(img/hamburger-solid.svg)');
                     burger_manger = false;
-                } else {
+                }else{
                     $('.navbar-light .navbar-toggler-icon').css('background-image', 'url(img/hamburger-open.svg)');
                     burger_manger = true;
                 }
-
-            })
+                
+            }) 
         })(jQuery)
+           
     </script>
 </header>
 
