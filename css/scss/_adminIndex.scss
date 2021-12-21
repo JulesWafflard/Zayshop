@@ -1,0 +1,187 @@
+header {
+    .navbar {
+        .container {
+            .menu {
+                ul {
+                    li {
+                        button,
+                        a {
+                            color: $textecolor;
+                            text-decoration: none;
+                            transition: color 0.5s;
+                            font-size: 20px;
+                            border: 0;
+                            background: 0;
+
+                            &:hover {
+                                color: #fff;
+                                @media (max-width: 992px) {
+                                    color: $textecolor;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+main {
+    padding: 45px 0;
+    h2 {
+        margin-bottom: 10px;
+    }
+    hr {
+        border-color: $vert;
+        border-width: 2px;
+        opacity: 1;
+        margin: 0;
+    }
+}
+#indexAdmin, #categoriesAdmin, #sizesAdmin, #usersAdmin {
+    .alert {
+        margin-top: 15px;
+    }
+    .table-list {
+        a.btn {
+            border-color: $vert;
+            background-color: $vert;
+            float: right;
+            margin: 15px 0;
+
+            &:focus {
+                box-shadow: 0px 6px 15px -5px $vert;
+            }
+        }
+    }
+}
+
+#addProduct,
+#editProduct,
+#addCategory,
+#addSize,
+#editSize,
+#addUser {
+    .back-button {
+        font-size: 13px;
+        font-style: italic;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    form {
+        margin-top: 5px;
+        
+        .input-image {
+            margin-top: 2rem;
+           
+
+            .imgUp {
+                margin-bottom: 15px;
+                position: relative;
+
+                .imagePreview {
+                    width: 100%;
+                    height: 180px;
+                    background-position: center center;
+                    // background-image: url(".../img/plus-circle-solid.svg");
+                    background-color: #fff;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    display: inline-block;
+                    box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: end;
+
+                    label{
+                        color:$textecolor;
+                        font-size: .75rem;
+                        margin-left: .5rem;
+                    }
+
+                    input{
+                        border-radius: 0;
+                        padding: 0.25rem;
+                        font-size: .75rem;
+                        border: 0;
+                        border-bottom: 1px solid $vert;
+                        background-color: rgba(255,255,255,.35);
+                        color: $textecolor;
+                        
+                        &:focus{
+                            box-shadow: none;
+                        }
+                        &:focus-visible{
+                            outline: none;
+                        }
+                    }
+                }
+    
+                .btn {
+                    display: block;
+                    border-radius: 0px;
+                    background-color: $vert;
+                    border-color: $vert;
+                    color: #fff;
+                    box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, 0.2);
+                }
+
+                .del {
+                    position: absolute;
+                    top: 0px;
+                    right: 15px;
+                    width: 30px;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    background-color: rgba(255, 255, 255, 0.6);
+                    cursor: pointer;
+                }
+            }
+
+            .imgAdd {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: $vert;
+                color: #fff;
+                box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                line-height: 30px;
+                margin-top: 0px;
+                cursor: pointer;
+                font-size: 15px;
+                padding: 0;
+            }
+            
+        }
+
+        button {
+            float: right;
+            color: #fff;
+            background-color: $vert;
+            border-color: $vert;
+
+            &:focus {
+                box-shadow: 0 0 0 0.25rem rgba(90, 172, 110, 0.5);
+            }
+        }
+    }
+}
+
+#editProduct, #editCategory,
+#editSize {
+    .empty-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h2 {
+            color: $vert;
+        }
+    }
+
+    .alert {
+        margin: 1rem 0;
+    }
+}
