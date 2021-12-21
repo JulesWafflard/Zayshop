@@ -1,0 +1,112 @@
+#about{
+    //  ------------------- section 1-------------
+    .about-us{
+        background-color: $vert;
+        padding: 50px 0;
+        h2{
+            color: white;
+            font-weight: 600;
+            font-size: 45px;
+            font-family: "Roboto";
+            
+            @media screen and (max-width:768px) {
+                font-size: 36px;
+            }
+            @media screen and (max-width:576px) {
+                font-size: 24px;
+                text-align: center;
+            }
+        }
+        p{
+            color: white;
+            font-size: 20px;
+            font-family: "Roboto";
+            
+            @media screen and (max-width:768px) {
+                font-size: 18px;
+            }
+            @media screen and (max-width:576px) {
+                font-size: 12px;
+                text-align: center;
+            }
+        
+        }
+    }
+    //-----------------------------------------------
+
+
+    //  ------------------- section 1-------------
+    .services{
+        margin-top:40px;
+        h2{
+            padding:20px 0;
+            text-align: center;
+            font-weight: 200;
+            font-size: 45px;
+            font-family: "Roboto";
+        }
+        .texte-presentation{
+            text-align: center;
+            width: 60%;
+            margin: auto;
+        }
+        p{
+            text-align: center;
+            font-size: 20px;
+            font-family: "Roboto";
+        }
+        .card-services{
+            box-shadow: 0 3px 5px 0 gray;
+            text-align: center;
+            padding: 60px 20px;
+            margin: 30px 0 60px 0;
+            
+            i{
+                color: $vert;
+                font-size: 70px;
+                margin-bottom: 15px;
+            }
+            p{
+                font-weight: 600;
+                font-size: 20px;
+                font-family: "Roboto";
+            }
+
+        }
+    }
+    //-----------------------------------------------
+
+
+    //  ------------------- section 1-------------
+    #ourbrands{
+        background-color: $gris;
+        margin-top: 30px;
+        padding-top:40px ;
+        h2{
+            padding:20px 0;
+            text-align: center;
+            font-weight: 200;
+            font-size: 45px;
+            font-family: "Roboto";
+        }
+        .container-texte{
+            width: 40%;
+            margin: auto;
+            text-align: center;
+            padding-bottom: 20px;
+            p{
+                font-size: 20px;
+                font-family: "Roboto";
+            }
+        }
+        .container-slider{
+            width: 55%;
+            margin: auto;
+            padding-bottom: 70px;
+            img{
+                filter: saturate(0%);
+            }
+        }
+    }
+    //-----------------------------------------------
+}

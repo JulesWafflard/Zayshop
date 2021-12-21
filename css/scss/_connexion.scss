@@ -1,0 +1,102 @@
+#connexion {
+    .section-connexion {
+        background-color: $vert;
+        padding: 50px 0;
+
+        .container-form {
+            background-color: white;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 5px 0 gray;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                margin: auto;
+
+                h2 {
+                    color: $vert;
+                    font-family: "Roboto";
+                    font-weight: 300;
+                    font-size: 45px;
+                }
+                hr{
+                    width: 50%;
+                    background-color: black;
+                    height: 2px;
+                    margin: 0;
+        
+                }
+
+                .container_input {
+                    padding-top: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    width: 80%;
+
+                    label {
+                        font-family: "Roboto";
+                        font-weight: 300;
+                    }
+
+                }
+                .container_oublie{
+                    padding-top: 5px;
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 80%;
+                    .oublie{
+                        color: $vert;
+                        text-decoration: underline;
+                        font-weight: 600;
+                        font-family: "Roboto";
+                    }
+                }
+
+                #submit {
+                    margin-top: 20px;
+                    background-color: $vert;
+                    color: white;
+                    border-radius: 4px;
+                    border: none;
+                    padding: 10px;
+                    font-family: "Roboto";
+                    font-weight: 300;
+                }
+
+                .inscription {
+                    padding-top: 10px;
+                    text-decoration: underline;
+                    color: black;
+                    font-family: "Roboto";
+                    font-weight: 300;
+
+                    &:hover {
+                        color: $vert;
+                        text-decoration: none;
+                    }
+                }
+                .deconnexion{
+                    margin-top: 20px;
+                    a{
+                    
+                    background-color: $vert;
+                    color: white;
+                    border-radius: 4px;
+                    border: none;
+                    padding: 10px;
+                    font-family: "Roboto";
+                    font-weight: 300;
+
+                    }
+                }
+            }
+
+        }
+    }
+}

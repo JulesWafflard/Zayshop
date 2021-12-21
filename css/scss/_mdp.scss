@@ -1,0 +1,84 @@
+#mdp {
+    section {
+        background-color: $vert;
+        padding: 50px 0;
+
+        .container {
+            .row {
+                .container-form {
+                    padding: 15px;
+                    background-color: white;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    align-items: center;
+                    box-shadow: 0 0 5px 0 gray;
+                    h2{
+                        color: $vert;
+                        font-size: 45px;
+                        font-family: "Roboto";
+                        font-weight: 300;
+                        text-align: center;
+                    }
+                    hr{
+                        width: 50%;
+                        background-color: black;
+                        height: 2px;
+                        margin: 0;
+            
+                    }
+                    form {
+                        margin-top: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        div {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            p {
+                                padding: 0;
+                                font-family: "Roboto";
+                                margin: 15px 0 0 0;
+                            }
+                            input {
+                                border: solid 0.5px gray;
+                                background-color: white;
+                                color: black;
+                                margin: 0;
+                                padding:0;
+                                border-radius: 0;
+                            }
+                        }
+
+                        input {
+                            background-color: $vert;
+                            color: white;
+                            font-family: "Roboto";
+                            font-weight: 300;
+                            margin: 15px 0;
+                            border: none;
+                            padding: 10px 15px;
+                            border-radius: 5px;
+                        }
+                    }
+                    .liens_connect{
+                        display: flex;
+                        justify-content: space-around;
+                        margin-top: 15px;
+                        a{
+                            text-decoration: underline;
+                            color: black;
+                            font-family: 'Roboto';
+                            font-weight: 300;
+                            &:hover{
+                                color: $vert;
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
