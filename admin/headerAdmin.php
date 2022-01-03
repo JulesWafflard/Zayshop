@@ -22,7 +22,15 @@
 
     <title>ZayShop</title>
 </head>
-<?php include 'functions.php'; ?>
+<?php 
+include 'functions.php'; 
+session_start();
+
+if (!isset($_SESSION['username'])){
+    header("Location: http://localhost/Zayshop");
+    die();
+}
+?>
 <header>
 
     <nav class="navbar navbar-light navbar-expand-lg">
@@ -46,7 +54,7 @@
                         <a class="nav-link" href="users.php">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="contact.php">Contact</a>
                     </li>
 
                     <li class="icon">
@@ -63,7 +71,7 @@
             <div class="icon">
                 <ul>
                     <li>
-                        <a href=""><i class="fas fa-sign-out-alt"></i></a>
+                        <a href="../deconnexion.php"><i class="fas fa-sign-out-alt"></i></a>
                     </li>
                 </ul>
             </div>

@@ -6,23 +6,9 @@ session_start();
     <h2>Edit Product</h2>
     <hr>
     <a class="back-button" href="index.php">Back</a>
-    <?php $product = getProduct($_GET['product_id']); ?>
 
     <?php if (isset($_GET['product_id'])) : ?>
-        <?php if (isset($_SESSION['succes_product_edit'])) : ?>
-            <?php if ($_SESSION['succes_product_edit']) : ?>
-                <?php unset($_SESSION["succes_product_edit"]) ?>
-                <div class="alert alert-success" role="alert">
-                    The product has been edited!
-                </div>
-            <?php else : ?>
-                <div class="alert alert-danger" role="alert">
-                    Error while edit the product..
-                </div>
-            <?php endif; ?>
-        <?php endif; ?>
-
-        <?php if (isset($_POST) && isset($_FILES['input-images'])) {
+        <?php if (isset($_POST) && isset($_FILES['input-images'])) :
             $productId = $_GET['product_id'];
 
             // Get All product taille
@@ -70,12 +56,19 @@ session_start();
             updateProductImage($productId, $images);
             $updateProduct = updateProduct($newProduct);
 
-            // Refresh page
-            $_SESSION['succes_product_edit'] = $updateProduct['success'];
-            header("Refresh:0");
-        }
+            if($updateProduct) :
         ?>
-
+                <div class="alert alert-success" role="alert">
+                    The product has been edited!
+                </div>
+            <?php else : ?>
+                <div class="alert alert-danger" role="alert">
+                    Error while edit the product..
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>    
+        
+        <?php $product = getProduct($_GET['product_id']);?>    
         <form class="row g-3 needs-validation" novalidate method="post" enctype="multipart/form-data">
             <!-- Input name -->
             <div class="col-md-12">

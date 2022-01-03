@@ -38,7 +38,7 @@ main {
         margin: 0;
     }
 }
-#indexAdmin, #categoriesAdmin, #sizesAdmin, #usersAdmin {
+#indexAdmin, #categoriesAdmin, #sizesAdmin, #usersAdmin, #contactAdmin {
     .alert {
         margin-top: 15px;
     }
@@ -56,12 +56,64 @@ main {
     }
 }
 
+#contactAdmin .table-list{
+    margin-top: 15px;
+
+    .hidden{
+        display: none;
+    }
+
+    .contact-container{
+        padding: .75rem;
+        
+        p{
+            margin: 0;
+            color: $textecolor
+        }
+
+        .contact-from, .contact-date{
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        .contact-subject{
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: .75rem 0;
+        }
+
+        .contact-answer{
+            float: right;
+            padding: .375rem .75rem; 
+            margin: .75rem 0;
+            background-color: $vert;
+            border-color: $vert;
+            border-radius: .25rem;
+            cursor: pointer;
+
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+
+            transition: color .15s;
+
+            &:focus {
+                box-shadow: 0 0 0 0.25rem rgba(90, 172, 110, 0.5);
+            }
+        }
+    }
+}
+
 #addProduct,
 #editProduct,
 #addCategory,
+#editCategory,
 #addSize,
 #editSize,
-#addUser {
+#addUser,
+#editUser {
     .back-button {
         font-size: 13px;
         font-style: italic;
@@ -166,6 +218,10 @@ main {
             &:focus {
                 box-shadow: 0 0 0 0.25rem rgba(90, 172, 110, 0.5);
             }
+        }
+
+        label[for=input-admin]{
+            margin: 0 7px;
         }
     }
 }

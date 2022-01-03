@@ -8,36 +8,32 @@ include 'headerAdmin.php';
     <a class="back-button" href="users.php">Back</a>
 
     <?php
-    if (isset($_POST) && !empty($_POST)) {
+    if (isset($_POST) && !empty($_POST)) :
         $user = (object) array(
             'nom' => $_POST['input-lastName'],
             'prenom' => $_POST['input-firstName'],
             'email' => $_POST['input-email'],
             'phone' => $_POST['input-phone'],
             'password' => $_POST['input-password'],
-            'adresse' => (!empty($_POST['input-adresse'])) ? $_POST['input-adresse'] : 'NULL',
-            'complement_adresse' => (!empty($_POST['input-cAdresse'])) ? $_POST['input-cAdresse'] : 'NULL',
-            'ville' => (!empty($_POST['input-ville'])) ? $_POST['input-ville'] : 'NULL',
-            'cp' => (!empty($_POST['input-codePostal'])) ? $_POST['input-codePostal'] : 'NULL',
-            'pays' => (!empty($_POST['input-pays'])) ? $_POST['input-pays'] : 'NULL',
+            'adresse' => (!empty($_POST['input-adresse'])) ? "'" . $_POST['input-adresse'] . "'" : 'NULL',
+            'complement_adresse' => (!empty($_POST['input-cAdresse'])) ? "'" . $_POST['input-cAdresse'] . "'" : 'NULL',
+            'ville' => (!empty($_POST['input-ville'])) ? "'" . $_POST['input-ville'] . "'" : 'NULL',
+            'cp' => (!empty($_POST['input-codePostal'])) ? "'" . $_POST['input-codePostal'] . "'" : 'NULL',
+            'pays' =>  $_POST['input-pays'],
             'admin' => $_POST['input-admin'],
         );
-        var_dump(isset($_POST['input-adresse']));
-        $createdUser = CreateUser($user);
-
-        // $createdCategory = createCategory($_POST['input-name']);
-
-        // if (!empty($createdCategory['id'])) : ?>
-            <!-- <div class="alert alert-success" role="alert">
-                 The user has been created!
-             </div> -->
-         <?php //else : ?>
-            <!-- <div class="alert alert-danger" role="alert">
-                Error while creating the user..
-            </div> -->
-        <?php // endif;
-    }
+        $createdUser = CreateUser($user); 
     ?>
+        <?php if($createdUser) : ?>
+            <div class="alert alert-success" role="alert">
+                The user has been created!
+            </div>
+        <?php else: ?>
+            <div class="alert alert-danger" role="alert">
+                Error while creating the user..
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
 
     <form class="row g-3 needs-validation" novalidate method="post" enctype="multipart/form-data">
         <!-- Input LastName -->

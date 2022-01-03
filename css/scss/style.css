@@ -397,28 +397,80 @@ main hr {
   margin: 0;
 }
 
-#indexAdmin .alert, #categoriesAdmin .alert, #sizesAdmin .alert, #usersAdmin .alert {
+#indexAdmin .alert, #categoriesAdmin .alert, #sizesAdmin .alert, #usersAdmin .alert, #contactAdmin .alert {
   margin-top: 15px;
 }
 
-#indexAdmin .table-list a.btn, #categoriesAdmin .table-list a.btn, #sizesAdmin .table-list a.btn, #usersAdmin .table-list a.btn {
+#indexAdmin .table-list a.btn, #categoriesAdmin .table-list a.btn, #sizesAdmin .table-list a.btn, #usersAdmin .table-list a.btn, #contactAdmin .table-list a.btn {
   border-color: #5AAC6E;
   background-color: #5AAC6E;
   float: right;
   margin: 15px 0;
 }
 
-#indexAdmin .table-list a.btn:focus, #categoriesAdmin .table-list a.btn:focus, #sizesAdmin .table-list a.btn:focus, #usersAdmin .table-list a.btn:focus {
+#indexAdmin .table-list a.btn:focus, #categoriesAdmin .table-list a.btn:focus, #sizesAdmin .table-list a.btn:focus, #usersAdmin .table-list a.btn:focus, #contactAdmin .table-list a.btn:focus {
   -webkit-box-shadow: 0px 6px 15px -5px #5AAC6E;
           box-shadow: 0px 6px 15px -5px #5AAC6E;
+}
+
+#contactAdmin .table-list {
+  margin-top: 15px;
+}
+
+#contactAdmin .table-list .hidden {
+  display: none;
+}
+
+#contactAdmin .table-list .contact-container {
+  padding: .75rem;
+}
+
+#contactAdmin .table-list .contact-container p {
+  margin: 0;
+  color: #263238;
+}
+
+#contactAdmin .table-list .contact-container .contact-from, #contactAdmin .table-list .contact-container .contact-date {
+  font-style: italic;
+  font-size: 1rem;
+}
+
+#contactAdmin .table-list .contact-container .contact-subject {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: .75rem 0;
+}
+
+#contactAdmin .table-list .contact-container .contact-answer {
+  float: right;
+  padding: .375rem .75rem;
+  margin: .75rem 0;
+  background-color: #5AAC6E;
+  border-color: #5AAC6E;
+  border-radius: .25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: color .15s;
+  transition: color .15s;
+}
+
+#contactAdmin .table-list .contact-container .contact-answer:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(90, 172, 110, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(90, 172, 110, 0.5);
 }
 
 #addProduct .back-button,
 #editProduct .back-button,
 #addCategory .back-button,
+#editCategory .back-button,
 #addSize .back-button,
 #editSize .back-button,
-#addUser .back-button {
+#addUser .back-button,
+#editUser .back-button {
   font-size: 13px;
   font-style: italic;
   color: rgba(0, 0, 0, 0.5);
@@ -427,27 +479,33 @@ main hr {
 #addProduct form,
 #editProduct form,
 #addCategory form,
+#editCategory form,
 #addSize form,
 #editSize form,
-#addUser form {
+#addUser form,
+#editUser form {
   margin-top: 5px;
 }
 
 #addProduct form .input-image,
 #editProduct form .input-image,
 #addCategory form .input-image,
+#editCategory form .input-image,
 #addSize form .input-image,
 #editSize form .input-image,
-#addUser form .input-image {
+#addUser form .input-image,
+#editUser form .input-image {
   margin-top: 2rem;
 }
 
 #addProduct form .input-image .imgUp,
 #editProduct form .input-image .imgUp,
 #addCategory form .input-image .imgUp,
+#editCategory form .input-image .imgUp,
 #addSize form .input-image .imgUp,
 #editSize form .input-image .imgUp,
-#addUser form .input-image .imgUp {
+#addUser form .input-image .imgUp,
+#editUser form .input-image .imgUp {
   margin-bottom: 15px;
   position: relative;
 }
@@ -455,9 +513,11 @@ main hr {
 #addProduct form .input-image .imgUp .imagePreview,
 #editProduct form .input-image .imgUp .imagePreview,
 #addCategory form .input-image .imgUp .imagePreview,
+#editCategory form .input-image .imgUp .imagePreview,
 #addSize form .input-image .imgUp .imagePreview,
 #editSize form .input-image .imgUp .imagePreview,
-#addUser form .input-image .imgUp .imagePreview {
+#addUser form .input-image .imgUp .imagePreview,
+#editUser form .input-image .imgUp .imagePreview {
   width: 100%;
   height: 180px;
   background-position: center center;
@@ -482,9 +542,11 @@ main hr {
 #addProduct form .input-image .imgUp .imagePreview label,
 #editProduct form .input-image .imgUp .imagePreview label,
 #addCategory form .input-image .imgUp .imagePreview label,
+#editCategory form .input-image .imgUp .imagePreview label,
 #addSize form .input-image .imgUp .imagePreview label,
 #editSize form .input-image .imgUp .imagePreview label,
-#addUser form .input-image .imgUp .imagePreview label {
+#addUser form .input-image .imgUp .imagePreview label,
+#editUser form .input-image .imgUp .imagePreview label {
   color: #263238;
   font-size: .75rem;
   margin-left: .5rem;
@@ -493,9 +555,11 @@ main hr {
 #addProduct form .input-image .imgUp .imagePreview input,
 #editProduct form .input-image .imgUp .imagePreview input,
 #addCategory form .input-image .imgUp .imagePreview input,
+#editCategory form .input-image .imgUp .imagePreview input,
 #addSize form .input-image .imgUp .imagePreview input,
 #editSize form .input-image .imgUp .imagePreview input,
-#addUser form .input-image .imgUp .imagePreview input {
+#addUser form .input-image .imgUp .imagePreview input,
+#editUser form .input-image .imgUp .imagePreview input {
   border-radius: 0;
   padding: 0.25rem;
   font-size: .75rem;
@@ -508,9 +572,11 @@ main hr {
 #addProduct form .input-image .imgUp .imagePreview input:focus,
 #editProduct form .input-image .imgUp .imagePreview input:focus,
 #addCategory form .input-image .imgUp .imagePreview input:focus,
+#editCategory form .input-image .imgUp .imagePreview input:focus,
 #addSize form .input-image .imgUp .imagePreview input:focus,
 #editSize form .input-image .imgUp .imagePreview input:focus,
-#addUser form .input-image .imgUp .imagePreview input:focus {
+#addUser form .input-image .imgUp .imagePreview input:focus,
+#editUser form .input-image .imgUp .imagePreview input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -518,18 +584,22 @@ main hr {
 #addProduct form .input-image .imgUp .imagePreview input:focus-visible,
 #editProduct form .input-image .imgUp .imagePreview input:focus-visible,
 #addCategory form .input-image .imgUp .imagePreview input:focus-visible,
+#editCategory form .input-image .imgUp .imagePreview input:focus-visible,
 #addSize form .input-image .imgUp .imagePreview input:focus-visible,
 #editSize form .input-image .imgUp .imagePreview input:focus-visible,
-#addUser form .input-image .imgUp .imagePreview input:focus-visible {
+#addUser form .input-image .imgUp .imagePreview input:focus-visible,
+#editUser form .input-image .imgUp .imagePreview input:focus-visible {
   outline: none;
 }
 
 #addProduct form .input-image .imgUp .btn,
 #editProduct form .input-image .imgUp .btn,
 #addCategory form .input-image .imgUp .btn,
+#editCategory form .input-image .imgUp .btn,
 #addSize form .input-image .imgUp .btn,
 #editSize form .input-image .imgUp .btn,
-#addUser form .input-image .imgUp .btn {
+#addUser form .input-image .imgUp .btn,
+#editUser form .input-image .imgUp .btn {
   display: block;
   border-radius: 0px;
   background-color: #5AAC6E;
@@ -542,9 +612,11 @@ main hr {
 #addProduct form .input-image .imgUp .del,
 #editProduct form .input-image .imgUp .del,
 #addCategory form .input-image .imgUp .del,
+#editCategory form .input-image .imgUp .del,
 #addSize form .input-image .imgUp .del,
 #editSize form .input-image .imgUp .del,
-#addUser form .input-image .imgUp .del {
+#addUser form .input-image .imgUp .del,
+#editUser form .input-image .imgUp .del {
   position: absolute;
   top: 0px;
   right: 15px;
@@ -559,9 +631,11 @@ main hr {
 #addProduct form .input-image .imgAdd,
 #editProduct form .input-image .imgAdd,
 #addCategory form .input-image .imgAdd,
+#editCategory form .input-image .imgAdd,
 #addSize form .input-image .imgAdd,
 #editSize form .input-image .imgAdd,
-#addUser form .input-image .imgAdd {
+#addUser form .input-image .imgAdd,
+#editUser form .input-image .imgAdd {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -580,9 +654,11 @@ main hr {
 #addProduct form button,
 #editProduct form button,
 #addCategory form button,
+#editCategory form button,
 #addSize form button,
 #editSize form button,
-#addUser form button {
+#addUser form button,
+#editUser form button {
   float: right;
   color: #fff;
   background-color: #5AAC6E;
@@ -592,11 +668,24 @@ main hr {
 #addProduct form button:focus,
 #editProduct form button:focus,
 #addCategory form button:focus,
+#editCategory form button:focus,
 #addSize form button:focus,
 #editSize form button:focus,
-#addUser form button:focus {
+#addUser form button:focus,
+#editUser form button:focus {
   -webkit-box-shadow: 0 0 0 0.25rem rgba(90, 172, 110, 0.5);
           box-shadow: 0 0 0 0.25rem rgba(90, 172, 110, 0.5);
+}
+
+#addProduct form label[for=input-admin],
+#editProduct form label[for=input-admin],
+#addCategory form label[for=input-admin],
+#editCategory form label[for=input-admin],
+#addSize form label[for=input-admin],
+#editSize form label[for=input-admin],
+#addUser form label[for=input-admin],
+#editUser form label[for=input-admin] {
+  margin: 0 7px;
 }
 
 #editProduct .empty-page, #editCategory .empty-page,

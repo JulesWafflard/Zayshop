@@ -70,8 +70,8 @@ function getProductAvis($id)
     $avis = $getAvis->fetch();
 
     return array(
-        'note' => ($avis['Note'] > 0) ? $avis['Note'] : 0,
-        'nb_com' => ($avis['Nb-commentaire'] > 0) ? $avis['Nb-commentaire'] : 0
+        'note' => (empty($avis['Note'])) ? 0 : $avis['Note'],
+        'nb_com' => (empty($avis['Nb-commentaire'])) ? 0 : $avis['Nb-commentaire']
     );
 }
 
@@ -128,7 +128,6 @@ function getProductImage($id)
             'nom' => $img['Nom']
         );
     }
-
     return (empty($productsImg)) ? 0 : $productsImg;
 }
 
@@ -158,11 +157,14 @@ function getNumberAvis($id)
 {
     $elm        = '<i class="fa fa-star"></i>';
     $elmGold    = '<i class="fa fa-star gold"></i>';
-    $avis       = getProductAvis($id)['note'];
+    $avis       = getProductAvis($id);
     $avisElm    = '';
 
-    for ($i = 1; $i <= $avis; $i++) {
-        $avisElm .= $elmGold;
+    if ($avis) {
+        $avis = $avis['note'];
+        for ($i = 1; $i <= $avis; $i++) {
+            $avisElm .= $elmGold;
+        }
     }
 
     for ($i = 1; $i <= 5 - $avis; $i++) {
@@ -218,8 +220,7 @@ function getTailleProduitId($idProduit, $idTaille)
     $getTaille = $dbh->prepare($requete);
     $getTaille->execute();
     $tailles = $getTaille->fetch();
-
-    return $tailles['id'];
+    return (empty($tailles['id'])) ? false : $tailles['id'];
 }
 
 function getAllSizesInProduct($idTaille)
@@ -530,7 +531,7 @@ function updateProduct($product)
     $tailleInsert = $dbh->prepare($tailleReq);
     $tailleInsert->execute();
 
-    if ($productUpd) {
+    if ($productUpd && $tailleInsert) {
         return array(
             'success' => true
         );
@@ -550,7 +551,6 @@ function updateProductImage($idProduit, $images)
         switch ($img['action']) {
             case 0: // Delete IMG
                 if (file_exists($file) && !empty($img['url'])) {
-                    var_dump(empty($img['url']));
                     unlink($file);
                     $req = "DELETE FROM `imageproduit` WHERE idProduit = $idProduit and idImage = " . $img['idImage'] . ";
                         DELETE FROM image WHERE id = " . $img['idImage'] . ";";
@@ -597,6 +597,7 @@ function updateProductImage($idProduit, $images)
         USERS
 */
 
+
 // Get User connected
 function getUnUser()
 {
@@ -624,6 +625,7 @@ function getUnUser()
     return $leUser;
 }
 
+// Get User by id
 function getUser($id)
 {
     global $dbh;
@@ -636,14 +638,16 @@ function getUser($id)
     if ($getUsers->rowCount() > 0) {
         $user = array(
             "id" => $user['id'],
-            "nom" => $user['Nom'],
-            "prenom" => $user['Prenom'],
-            "email" => $user['Email'],
-            "password" => $user['Mdp'],
-            "tel" => $user['Telephone'],
-            "adresse" => $user['Adresse'],
-            "cp" => $user['Codepostal'],
-            "ville" => $user['Ville'],
+            "nom" => isEmpty($user['Nom']),
+            "prenom" => isEmpty($user['Prenom']),
+            "email" => isEmpty($user['Email']),
+            "password" => isEmpty($user['Mdp']),
+            "tel" => isEmpty($user['Telephone']),
+            "adresse" => isEmpty($user['Adresse']),
+            "comp_adr" => isEmpty($user['Complementadresse']),
+            "cp" => isEmpty($user['Codepostal']),
+            "ville" => isEmpty($user['Ville']),
+            "pays" => $user['idPays'],
             "avis" => getUserAvis($user['id']),
             "admin" => $user['admin']
         );
@@ -672,6 +676,7 @@ function getAllUsers()
             "adresse" => $user['Adresse'],
             "cp" => $user['Codepostal'],
             "ville" => $user['Ville'],
+            "pays" => $user['idPays'],
             "avis" => getUserAvis($user['id']),
             "admin" => $user['admin']
         );
@@ -698,6 +703,53 @@ function DeleteUser($userId)
     return false;
 }
 
+function CreateUser($user)
+{
+    global $dbh;
+
+    if (UserExist($user->email)) return array('success' => false, 'message' => 'Email already use.');
+
+    $userAddReq = "INSERT INTO users
+                  (`Nom`, `Prenom`, `Telephone`, `Email`, `Mdp`, `Adresse`, `Complementadresse`, `Codepostal`, `Ville`, `admin`, `idPays`)
+                  VALUE('$user->nom', '$user->prenom', '$user->phone', '$user->email', '$user->password', $user->adresse, $user->complement_adresse, $user->cp, $user->ville, $user->admin, $user->pays) ";
+
+    $userInsert = $dbh->prepare($userAddReq);
+    $userInsert->execute();
+
+    if ($userInsert) {
+        return array('success' => true);
+    }
+
+    return array('success' => false, 'message' => '');
+}
+
+function EditUser($user){
+    global $dbh;
+    $userEditReq = "UPDATE users SET
+                    `Nom` = '$user->nom', `Prenom` = '$user->prenom', `Telephone` = '$user->phone', `Email` = '$user->email', 
+                    `Mdp` = '$user->password', `Adresse` = $user->adresse, `Complementadresse` = $user->complement_adresse, 
+                    `Codepostal` = $user->cp, `Ville` = $user->ville, `admin` = '$user->admin', `idPays` = '$user->pays'
+                   WHERE id = $user->id;";
+
+    $userEdit = $dbh->prepare($userEditReq);
+    $userEdit->execute();
+
+    if ($userEdit) {
+        return array('success' => true);
+    }
+
+    return array('success' => false, 'message' => '');
+}
+
+function UserExist($email)
+{
+    global $dbh;
+    $reponse = $dbh->prepare('SELECT Email FROM users WHERE Email = "' . $email . '"');
+    $reponse->execute();
+    $count = $reponse->fetchColumn();
+    return ($count == 1);
+}
+
 function getPays()
 {
     global $dbh;
@@ -712,31 +764,91 @@ function getPays()
     return $paysList;
 }
 
-function CreateUser($user)
-{
+function getPaysName($id){
     global $dbh;
-
-    if(UserExist($user->email)) return array('success' => false, 'message' => 'Email already use.');
-
-    $userAddReq = "INSERT INTO users
-                  (`Nom`, `Prenom`, `Telephone`, `Email`, `Mdp`, `Adresse`, `Complementadresse`, `Codepostal`, `Ville`, `admin`, `idPays`)
-                  VALUE('$user->nom', '$user->prenom', '$user->phone', '$user->email', '$user->password', '$user->adresse', '$user->complement_adresse', $user->cp, '$user->ville', '$user->admin', $user->pays) ";
-    
-    $userInsert = $dbh->prepare($userAddReq);
-    $userInsert->execute();
-    var_dump($userAddReq);
-
-    if($userInsert){
-        return array('success' => true);
+    $requete = "SELECT Nom FROM pays WHERE id = $id";
+    $getPays = $dbh->prepare($requete);
+    $getPays->execute();
+    $pays = $getPays->fetch();
+    if(!empty($pays)){
+        return $pays['Nom'];
+    }else{
+        return false;
     }
-
-    array('success' => false, 'message' => '');
 }
 
-function UserExist($email){
+/*
+        CONTACT
+*/
+
+function getContactList(){
     global $dbh;
-    $reponse = $dbh->prepare('SELECT Email FROM users WHERE Email = "' . $email . '"');
-    $reponse->execute();
-    $count = $reponse->fetchColumn();
-    return ($count == 1);
+    $contactList = [];
+    $requete = "SELECT * FROM contact ";
+    $getContact = $dbh->prepare($requete);
+    $getContact->execute();
+    $contacts = $getContact->fetchAll();
+
+    foreach ($contacts as $contact) {
+        $contactList[] = array(
+            "id" => $contact['id'],
+            "nom" => $contact['nom'],
+            "email" => $contact['email'],
+            "sujet" => $contact['sujet'],
+            "message" => $contact['message'],
+            "date" => $contact['date'],
+        );
+    }
+
+    return $contactList;
+}
+
+function getContactMessage($id)
+{
+    global $dbh;
+    $contactMsg = array();
+    $requete = "SELECT * FROM produit WHERE id = $id";
+    $getMsg = $dbh->prepare($requete);
+    $getMsg->execute();
+    $contactMsg = $getMsg->fetch();
+
+    if ($getMsg->rowCount() > 0) {
+        $contactMsg = array(
+            'id' => $id,
+            'nom' => $contactMsg['nom'],
+            'email' => $contactMsg['email'],
+            'sujet' => $contactMsg['sujet'],
+            'message' => $contactMsg['message'],
+        );
+
+        return $contactMsg;
+    }
+
+    return false;
+}
+
+function DeleteContact($id){
+    global $dbh;
+
+    if(getContactMessage($id)){
+        $req = "DELETE FROM `contact` WHERE id=$id";
+        $messDel = $dbh->query($req);
+
+        if ($messDel) {
+            return array("success" => true, "message" => '');
+        }
+    }
+    
+    return array("success" => false, "message" => '');
+}
+
+function isEmpty($val){
+    return (empty($val)) ? '' : $val ;
+}
+
+function formatDate($date, $format){
+    $date = new DateTime($date);
+    $dateFormat = $date->format($format);
+
+    return $dateFormat;
 }
