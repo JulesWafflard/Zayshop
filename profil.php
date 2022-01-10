@@ -19,7 +19,7 @@ $leUser = getUnUser()[0];
                         'complementadresse' => $_POST['input-c-adresse'],
                         'cp' => (empty($_POST['input-cp'])) ? "null" : $_POST['input-cp'],
                         'ville' => $_POST['input-ville'],
-                        'pays' => $_POST['input-pays'],
+                        'pays' => (empty($_POST['input-pays'])) ? "null" : $_POST['input-pays'],
                         'telephone' => $_POST['input-telephone']
                     );
                     $updateUser = updateUser($user);
