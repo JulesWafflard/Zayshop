@@ -22,12 +22,8 @@
 
 <?php
 include('bdd.php');
-include('functions.php');
-
-
 session_start();
-$_SESSION['username'] = 'pierre@aioli-digital.com';
-$leUser = getUnUser()[0];
+include('functions.php');
 ?>
 
 <header>
@@ -50,23 +46,23 @@ $leUser = getUnUser()[0];
 
     <nav class="navbar navbar-light navbar-expand-lg">
         <div class="container">
-            <h1 class="zay"><a class="navbar-brand" href="#">Zay</a></h1>
+            <h1 class="zay"><a class="navbar-brand" href="index.php">Zay</a></h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="about.php">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="shop.php">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="contact.php">Contact</a>
                     </li>
 
                     <li class="icon">
@@ -76,10 +72,15 @@ $leUser = getUnUser()[0];
                                     <a href=""><i class="fas fa-search"></i></a>
                                 </li>
                                 <li>
-                                    <a href=""><i class="fas fa-cart-plus"></i></a>
+                                    <a href="panier.php"><i class="fas fa-cart-plus"></i></a>
                                 </li>
                                 <li>
-                                    <a href=""><i class="fas fa-user"></i></a>
+                                    <?php
+                                    if (isset($_SESSION['username'])) { ?>
+                                        <a href="profil.php"><i class="fas fa-user"></i></a>
+                                    <?php } else { ?>
+                                        <a href="connexion.php"><i class="fas fa-user"></i></a>
+                                    <?php } ?>
                                 </li>
                             </ul>
                         </div>
@@ -105,7 +106,12 @@ $leUser = getUnUser()[0];
                         </a>
                     </li>
                     <li>
-                        <a href=""><i class="fas fa-user"></i></a>
+                        <?php
+                        if (isset($_SESSION['username'])) { ?>
+                            <a href="profil.php"><i class="fas fa-user"></i></a>
+                        <?php } else { ?>
+                            <a href="connexion.php"><i class="fas fa-user"></i></a>
+                        <?php } ?>
                     </li>
                 </ul>
             </div>

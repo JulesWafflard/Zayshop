@@ -8,7 +8,7 @@ $leUser = getUnUser()[0];
 
         <div class="container">
             <?php
-            if (isset($_POST['idUser'])) {
+            if (isset($_POST['idUser']) && !isset($_POST['deconnexion'])) {
                 if (isset($_POST)) {
                     $user = array(
                         'idUser' => $_POST['idUser'],
@@ -22,7 +22,6 @@ $leUser = getUnUser()[0];
                         'pays' => $_POST['input-pays'],
                         'telephone' => $_POST['input-telephone']
                     );
-
                     $updateUser = updateUser($user);
                     if ($updateUser) {
             ?>
@@ -39,6 +38,10 @@ $leUser = getUnUser()[0];
             <?php
                     }
                 }
+            }
+
+            if (isset($_POST['deconnexion'])) {
+                deconnexion();
             }
             ?>
 
@@ -100,9 +103,8 @@ $leUser = getUnUser()[0];
                     <div class="col-lg-6">
                         <button type="submit" class="btn btn-addbuyG">Enregistrer mes informations <i class="far fa-save"></i></button>
                     </div>
-
                     <div class="col-lg-6">
-                        <a type="submit" class="btn btn-addbuyD">Payer <i class="far fa-money-bill-alt"></i></a>
+                        <button type="submit" name="deconnexion" class="btn btn-addbuyD">Déconnexion <i class="fas fa-drumstick-bite"></i></button>
                     </div>
                 </div>
 

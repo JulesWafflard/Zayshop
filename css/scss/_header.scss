@@ -47,6 +47,9 @@
             color: $vert !important;
             font-weight: 700;
             font-size: 50px;
+            &:hover {
+                text-decoration: none;
+            }
         }
 
         .navbar-toggler {

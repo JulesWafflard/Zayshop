@@ -22,6 +22,7 @@ include 'header.php';
 
                     $insertQuantity = insertPanierQuantity($quantity);
                     if ($insertQuantity) {
+                        echo '<meta http-equiv="refresh" content="0;url=informationsperso.php">';
                     }
                 }
             }

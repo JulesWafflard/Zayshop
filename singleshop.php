@@ -1,10 +1,13 @@
 <?php
 include 'header.php';
 
-/*$NAME = $_GET['5'];*/
+$idProduit = $_GET['idProduit'];
+if (isset($_SESSION['username'])) {
+    $leUser = getUnUser()[0];
+}
 
-$idProduit = 7;
 ?>
+
 
 <main>
 
@@ -16,7 +19,7 @@ $idProduit = 7;
 
                 <div class="col-lg-4 col-md-8 col-sm-12 imageproduit">
 
-                    <img src="<?php echo $product['images'][3]['url']; ?>" alt="..." class="rounded-0">
+                    <img src="<?php echo $product['images'][0]['url']; ?>" alt="..." class="rounded-0">
 
                     <div class="uk-position-relative uk-visible-toggle uk-light slide" tabindex="-1" uk-slider>
 
@@ -40,9 +43,9 @@ $idProduit = 7;
                     <div class="row">
 
                         <div class="col-lg-12 col-md-7 col-sm-12">
-                            <h2>Active Wear</h2>
+                            <h2><?php echo $product['nom']; ?></h2>
 
-                            <p>$25.00</p>
+                            <p>$<?php echo $product['prix']; ?></p>
 
                             <ul class="avis">
                                 <li>
@@ -71,11 +74,11 @@ $idProduit = 7;
 
                             <?php
                             if (isset($_POST['addtocart'])) {
-                                if (isset($_POST) && (isset($_POST['input-taille'])) /*Function if connected*/) {
+                                if (isset($_SESSION['username'])) /*Function if connected*/ {
                                     $panier = array(
                                         'idProduit' => $idProduit,
-                                        'idUser' => 1,
-                                        'taille' => $_POST['input-taille'],
+                                        'idUser' => $leUser['id'],
+                                        'taille' => empty($_POST['input-taille']) ? 'null' : "'".$_POST['input-taille'][0]."'",
                                         'quantite' => $_POST['input-quantite'],
                                         'submit' => $_POST['submit']
                                     );
@@ -99,6 +102,9 @@ $idProduit = 7;
                                         </div>
                             <?php
                                     }
+                                }
+                                else{
+                                    echo '<meta http-equiv="refresh" content="0;url=connexion.php">';
                                 }
                             }
                             ?>
@@ -168,7 +174,7 @@ $idProduit = 7;
                     if (isset($_POST)) {
                         $avis = array(
                             'idProduit' => $idProduit,
-                            'idUser' => 1,
+                            'idUser' => $leUser['id'],
                             'commentaire' => $_POST['input-commentaire'],
                             'note' => $_POST['input-note'],
                         );
