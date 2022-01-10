@@ -24,6 +24,7 @@ $leUser = getUnUser()[0];
                     );
                     $updateUser = updateUser($user);
                     if ($updateUser) {
+                        $_SESSION['username'] = $_POST['input-email'];
             ?>
                         <div class="alert alert-success" role="alert">
                             Les informations personnelles ont bien été enregistrées
