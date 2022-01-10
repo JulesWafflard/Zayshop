@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 13 déc. 2021 à 11:03
+-- Généré le :  lun. 10 jan. 2022 à 11:18
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `avis`;
 CREATE TABLE IF NOT EXISTS `avis` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Note` int(11) DEFAULT NULL,
-  `Commentaire` varchar(100) DEFAULT NULL,
+  `Commentaire` varchar(500) DEFAULT NULL,
   `idUser` int(11) DEFAULT NULL,
   `idProduit` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -66,8 +66,9 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `email` varchar(150) NOT NULL,
   `sujet` varchar(150) NOT NULL,
   `message` text NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -80,14 +81,15 @@ CREATE TABLE IF NOT EXISTS `genre` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Genre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `genre`
 --
 
 INSERT INTO `genre` (`id`, `Genre`) VALUES
-(1, 'male');
+(1, 'Homme'),
+(2, 'Femme');
 
 -- --------------------------------------------------------
 
@@ -101,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `Nom` varchar(100) DEFAULT NULL,
   `URL` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -111,13 +113,13 @@ CREATE TABLE IF NOT EXISTS `image` (
 
 DROP TABLE IF EXISTS `imageproduit`;
 CREATE TABLE IF NOT EXISTS `imageproduit` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idProduit` int(11) DEFAULT NULL,
   `idImage` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_idProduit_ImageProduit` (`idProduit`),
   KEY `fk_idImage_ImageProduit` (`idImage`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -128,23 +130,14 @@ CREATE TABLE IF NOT EXISTS `imageproduit` (
 DROP TABLE IF EXISTS `panier`;
 CREATE TABLE IF NOT EXISTS `panier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Taille` varchar(5) DEFAULT NULL,
   `Quantite` int(11) DEFAULT NULL,
   `idUser` int(11) DEFAULT NULL,
   `idProduit` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_idProduit_Panier` (`idProduit`),
   KEY `fk_idUser_Panier` (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `panier`
---
-
-INSERT INTO `panier` (`id`, `Quantite`, `idUser`, `idProduit`) VALUES
-(1, 2, 1, 3),
-(2, 1, 1, 2),
-(3, 5, 2, 3),
-(4, 2, 2, 2);
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -157,7 +150,254 @@ CREATE TABLE IF NOT EXISTS `pays` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=242 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `pays`
+--
+
+INSERT INTO `pays` (`id`, `Nom`) VALUES
+(1, 'Afghanistan'),
+(2, 'Albanie'),
+(3, 'Antarctique'),
+(4, 'Algérie'),
+(5, 'Samoa Américaines'),
+(6, 'Andorre'),
+(7, 'Angola'),
+(8, 'Antigua-et-Barbuda'),
+(9, 'Azerbaïdjan'),
+(10, 'Argentine'),
+(11, 'Australie'),
+(12, 'Autriche'),
+(13, 'Bahamas'),
+(14, 'Bahreïn'),
+(15, 'Bangladesh'),
+(16, 'Arménie'),
+(17, 'Barbade'),
+(18, 'Belgique'),
+(19, 'Bermudes'),
+(20, 'Bhoutan'),
+(21, 'Bolivie'),
+(22, 'Bosnie-Herzégovine'),
+(23, 'Botswana'),
+(24, 'Île Bouvet'),
+(25, 'Brésil'),
+(26, 'Belize'),
+(27, 'Territoire Britannique de l\'Océan Indien'),
+(28, 'Îles Salomon'),
+(29, 'Îles Vierges Britanniques'),
+(30, 'Brunéi Darussalam'),
+(31, 'Bulgarie'),
+(32, 'Myanmar'),
+(33, 'Burundi'),
+(34, 'Bélarus'),
+(35, 'Cambodge'),
+(36, 'Cameroun'),
+(37, 'Canada'),
+(38, 'Cap-vert'),
+(39, 'Îles Caïmanes'),
+(40, 'République Centrafricaine'),
+(41, 'Sri Lanka'),
+(42, 'Tchad'),
+(43, 'Chili'),
+(44, 'Chine'),
+(45, 'Taïwan'),
+(46, 'Île Christmas'),
+(47, 'Îles Cocos (Keeling)'),
+(48, 'Colombie'),
+(49, 'Comores'),
+(50, 'Mayotte'),
+(51, 'République du Congo'),
+(52, 'République Démocratique du Congo'),
+(53, 'Îles Cook'),
+(54, 'Costa Rica'),
+(55, 'Croatie'),
+(56, 'Cuba'),
+(57, 'Chypre'),
+(58, 'République Tchèque'),
+(59, 'Bénin'),
+(60, 'Danemark'),
+(61, 'Dominique'),
+(62, 'République Dominicaine'),
+(63, 'Équateur'),
+(64, 'El Salvador'),
+(65, 'Guinée Équatoriale'),
+(66, 'Éthiopie'),
+(67, 'Érythrée'),
+(68, 'Estonie'),
+(69, 'Îles Féroé'),
+(70, 'Îles (malvinas) Falkland'),
+(71, 'Géorgie du Sud et les Îles Sandwich du Sud'),
+(72, 'Fidji'),
+(73, 'Finlande'),
+(74, 'Îles Åland'),
+(75, 'France'),
+(76, 'Guyane Française'),
+(77, 'Polynésie Française'),
+(78, 'Terres Australes Françaises'),
+(79, 'Djibouti'),
+(80, 'Gabon'),
+(81, 'Géorgie'),
+(82, 'Gambie'),
+(83, 'Territoire Palestinien Occupé'),
+(84, 'Allemagne'),
+(85, 'Ghana'),
+(86, 'Gibraltar'),
+(87, 'Kiribati'),
+(88, 'Grèce'),
+(89, 'Groenland'),
+(90, 'Grenade'),
+(91, 'Guadeloupe'),
+(92, 'Guam'),
+(93, 'Guatemala'),
+(94, 'Guinée'),
+(95, 'Guyana'),
+(96, 'Haïti'),
+(97, 'Îles Heard et Mcdonald'),
+(98, 'Saint-Siège (état de la Cité du Vatican)'),
+(99, 'Honduras'),
+(100, 'Hong-Kong'),
+(101, 'Hongrie'),
+(102, 'Islande'),
+(103, 'Inde'),
+(104, 'Indonésie'),
+(105, 'République Islamique d\'Iran'),
+(106, 'Iraq'),
+(107, 'Irlande'),
+(108, 'Israël'),
+(109, 'Italie'),
+(110, 'Côte d\'Ivoire'),
+(111, 'Jamaïque'),
+(112, 'Japon'),
+(113, 'Kazakhstan'),
+(114, 'Jordanie'),
+(115, 'Kenya'),
+(116, 'République Populaire Démocratique de Corée'),
+(117, 'République de Corée'),
+(118, 'Koweït'),
+(119, 'Kirghizistan'),
+(120, 'République Démocratique Populaire Lao'),
+(121, 'Liban'),
+(122, 'Lesotho'),
+(123, 'Lettonie'),
+(124, 'Libéria'),
+(125, 'Jamahiriya Arabe Libyenne'),
+(126, 'Liechtenstein'),
+(127, 'Lituanie'),
+(128, 'Luxembourg'),
+(129, 'Macao'),
+(130, 'Madagascar'),
+(131, 'Malawi'),
+(132, 'Malaisie'),
+(133, 'Maldives'),
+(134, 'Mali'),
+(135, 'Malte'),
+(136, 'Martinique'),
+(137, 'Mauritanie'),
+(138, 'Maurice'),
+(139, 'Mexique'),
+(140, 'Monaco'),
+(141, 'Mongolie'),
+(142, 'République de Moldova'),
+(143, 'Montserrat'),
+(144, 'Maroc'),
+(145, 'Mozambique'),
+(146, 'Oman'),
+(147, 'Namibie'),
+(148, 'Nauru'),
+(149, 'Népal'),
+(150, 'Pays-Bas'),
+(151, 'Antilles Néerlandaises'),
+(152, 'Aruba'),
+(153, 'Nouvelle-Calédonie'),
+(154, 'Vanuatu'),
+(155, 'Nouvelle-Zélande'),
+(156, 'Nicaragua'),
+(157, 'Niger'),
+(158, 'Nigéria'),
+(159, 'Niué'),
+(160, 'Île Norfolk'),
+(161, 'Norvège'),
+(162, 'Îles Mariannes du Nord'),
+(163, 'Îles Mineures Éloignées des États-Unis'),
+(164, 'États Fédérés de Micronésie'),
+(165, 'Îles Marshall'),
+(166, 'Palaos'),
+(167, 'Pakistan'),
+(168, 'Panama'),
+(169, 'Papouasie-Nouvelle-Guinée'),
+(170, 'Paraguay'),
+(171, 'Pérou'),
+(172, 'Philippines'),
+(173, 'Pitcairn'),
+(174, 'Pologne'),
+(175, 'Portugal'),
+(176, 'Guinée-Bissau'),
+(177, 'Timor-Leste'),
+(178, 'Porto Rico'),
+(179, 'Qatar'),
+(180, 'Réunion'),
+(181, 'Roumanie'),
+(182, 'Fédération de Russie'),
+(183, 'Rwanda'),
+(184, 'Sainte-Hélène'),
+(185, 'Saint-Kitts-et-Nevis'),
+(186, 'Anguilla'),
+(187, 'Sainte-Lucie'),
+(188, 'Saint-Pierre-et-Miquelon'),
+(189, 'Saint-Vincent-et-les Grenadines'),
+(190, 'Saint-Marin'),
+(191, 'Sao Tomé-et-Principe'),
+(192, 'Arabie Saoudite'),
+(193, 'Sénégal'),
+(194, 'Seychelles'),
+(195, 'Sierra Leone'),
+(196, 'Singapour'),
+(197, 'Slovaquie'),
+(198, 'Viet Nam'),
+(199, 'Slovénie'),
+(200, 'Somalie'),
+(201, 'Afrique du Sud'),
+(202, 'Zimbabwe'),
+(203, 'Espagne'),
+(204, 'Sahara Occidental'),
+(205, 'Soudan'),
+(206, 'Suriname'),
+(207, 'Svalbard etÎle Jan Mayen'),
+(208, 'Swaziland'),
+(209, 'Suède'),
+(210, 'Suisse'),
+(211, 'République Arabe Syrienne'),
+(212, 'Tadjikistan'),
+(213, 'Thaïlande'),
+(214, 'Togo'),
+(215, 'Tokelau'),
+(216, 'Tonga'),
+(217, 'Trinité-et-Tobago'),
+(218, 'Émirats Arabes Unis'),
+(219, 'Tunisie'),
+(220, 'Turquie'),
+(221, 'Turkménistan'),
+(222, 'Îles Turks et Caïques'),
+(223, 'Tuvalu'),
+(224, 'Ouganda'),
+(225, 'Ukraine'),
+(226, 'L\'ex-République Yougoslave de Macédoine'),
+(227, 'Égypte'),
+(228, 'Royaume-Uni'),
+(229, 'Île de Man'),
+(230, 'République-Unie de Tanzanie'),
+(231, 'États-Unis'),
+(232, 'Îles Vierges des États-Unis'),
+(233, 'Burkina Faso'),
+(234, 'Uruguay'),
+(235, 'Ouzbékistan'),
+(236, 'Venezuela'),
+(237, 'Wallis et Futuna'),
+(238, 'Samoa'),
+(239, 'Yémen'),
+(240, 'Serbie-et-Monténégro'),
+(241, 'Zambie');
 
 -- --------------------------------------------------------
 
@@ -171,23 +411,15 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `Nom` varchar(100) DEFAULT NULL,
   `Description` varchar(500) DEFAULT NULL,
   `Marque` varchar(100) DEFAULT NULL,
-  `Prix` float DEFAULT NULL,
+  `Prix` decimal(10,2) DEFAULT NULL,
   `Couleur` varchar(100) DEFAULT NULL,
-  `Specification` varchar(100) DEFAULT NULL,
+  `Specification` varchar(500) DEFAULT NULL,
   `idCategorie` int(11) DEFAULT NULL,
   `idGenre` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_idCategorie_Produit` (`idCategorie`),
   KEY `fk_idGenre_Produit` (`idGenre`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `produit`
---
-
-INSERT INTO `produit` (`id`, `Nom`, `Description`, `Marque`, `Prix`, `Couleur`, `Specification`, `idCategorie`, `idGenre`) VALUES
-(2, 'montre', 'test', NULL, 199.99, 'or', NULL, NULL, 1),
-(3, 'slip', 'test', NULL, 15.99, 'noir', NULL, NULL, 1);
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -201,9 +433,9 @@ CREATE TABLE IF NOT EXISTS `produitavis` (
 ,`Nom` varchar(100)
 ,`Description` varchar(500)
 ,`Marque` varchar(100)
-,`Prix` float
+,`Prix` decimal(10,2)
 ,`Couleur` varchar(100)
-,`Specification` varchar(100)
+,`Specification` varchar(500)
 ,`idCategorie` int(11)
 ,`idGenre` int(11)
 ,`Note` decimal(11,0)
@@ -233,10 +465,11 @@ CREATE TABLE IF NOT EXISTS `produitimage` (
 DROP VIEW IF EXISTS `produitprixpanier`;
 CREATE TABLE IF NOT EXISTS `produitprixpanier` (
 `id` int(11)
+,`Taille` varchar(5)
 ,`Quantite` int(11)
 ,`idUser` int(11)
 ,`idProduit` int(11)
-,`Prix` float
+,`Prix` decimal(10,2)
 ,`prixArticles` decimal(10,2)
 );
 
@@ -264,7 +497,17 @@ CREATE TABLE IF NOT EXISTS `taille` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `taille`
+--
+
+INSERT INTO `taille` (`id`, `libelle`) VALUES
+(1, 'S'),
+(2, 'M'),
+(3, 'L'),
+(4, 'XL');
 
 -- --------------------------------------------------------
 
@@ -280,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `tailleproduit` (
   PRIMARY KEY (`id`),
   KEY `fk_idProduit_TailleProduit` (`idProduit`),
   KEY `fk_idTaille_TailleProduit` (`idTaille`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -304,15 +547,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `idPays` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_idPays_Users` (`idPays`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `Nom`, `Prenom`, `Telephone`, `Email`, `Mdp`, `Adresse`, `Complementadresse`, `Codepostal`, `Ville`, `admin`, `idPays`) VALUES
-(1, 'Herbert', 'Pierre', '4545', 'pierre@aioli-digital.com', 'toto', '2 impasse des nenuphars', 'maison jaune', 85001, 'les achards', 0, NULL),
-(2, 'Braillon', 'Nicolas', '4545', NULL, 'titi', NULL, NULL, 85001, 'lrsy', 0, NULL);
+(5, 'Admin', 'Admin', '0000000000', 'admin@zayshop.fr', 'admin', '', '', NULL, '', 1, 75);
 
 -- --------------------------------------------------------
 
@@ -339,7 +581,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `produitprixpanier`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `produitprixpanier`  AS  select `pa`.`id` AS `id`,`pa`.`Quantite` AS `Quantite`,`pa`.`idUser` AS `idUser`,`pa`.`idProduit` AS `idProduit`,`produit`.`Prix` AS `Prix`,cast((`pa`.`Quantite` * `produit`.`Prix`) as decimal(10,2)) AS `prixArticles` from (`panier` `pa` join `produit` on((`pa`.`idProduit` = `produit`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `produitprixpanier`  AS  select `pa`.`id` AS `id`,`pa`.`Taille` AS `Taille`,`pa`.`Quantite` AS `Quantite`,`pa`.`idUser` AS `idUser`,`pa`.`idProduit` AS `idProduit`,`produit`.`Prix` AS `Prix`,cast((`pa`.`Quantite` * `produit`.`Prix`) as decimal(10,2)) AS `prixArticles` from (`panier` `pa` join `produit` on((`pa`.`idProduit` = `produit`.`id`))) ;
 
 -- --------------------------------------------------------
 
