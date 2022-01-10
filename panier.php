@@ -30,7 +30,7 @@ include 'header.php';
 
             <form method="POST">
                 <?php
-                $id = 1;
+                $id = getUnUser()[0]['id'];
                 $products = getAllProductsCart($id);
                 foreach ($products as $product) {
                 ?>
